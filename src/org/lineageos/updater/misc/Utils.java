@@ -112,9 +112,7 @@ public class Utils {
 
     public static boolean canInstall(UpdateBaseInfo update) {
         return (SystemProperties.getBoolean(Constants.PROP_UPDATER_ALLOW_DOWNGRADING, false) ||
-                update.getTimestamp() > SystemProperties.getLong(Constants.PROP_BUILD_DATE, 0)) &&
-                update.getVersion().equalsIgnoreCase(
-                        SystemProperties.get(Constants.PROP_BUILD_VERSION));
+                update.getTimestamp() > SystemProperties.getLong(Constants.PROP_BUILD_DATE, 0));
     }
 
     public static List<UpdateInfo> parseJson(File file, boolean compatibleOnly)
@@ -154,6 +152,7 @@ public class Utils {
         String device = SystemProperties.get(Constants.PROP_NEXT_DEVICE,
                 SystemProperties.get(Constants.PROP_DEVICE));
         String type = SystemProperties.get(Constants.PROP_RELEASE_TYPE).toLowerCase(Locale.ROOT);
+        String flavor = SystemProperties.get(Constants.PROP_FLAVOR);
 
         String serverUrl = SystemProperties.get(Constants.PROP_UPDATER_URI);
         if (serverUrl.trim().isEmpty()) {
@@ -162,7 +161,8 @@ public class Utils {
 
         return serverUrl.replace("{device}", device)
                 .replace("{type}", type)
-                .replace("{incr}", incrementalVersion);
+                .replace("{incr}", incrementalVersion)
+                .replace("{flavor}", flavor);
     }
 
     public static String getUpgradeBlockedURL(Context context) {
