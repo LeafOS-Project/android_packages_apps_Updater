@@ -482,17 +482,11 @@ public class UpdatesActivity extends UpdatesListActivity {
         Spinner autoCheckInterval = view.findViewById(R.id.preferences_auto_updates_check_interval);
         SwitchCompat autoDelete = view.findViewById(R.id.preferences_auto_delete_updates);
         SwitchCompat dataWarning = view.findViewById(R.id.preferences_mobile_data_warning);
-        SwitchCompat abPerfMode = view.findViewById(R.id.preferences_ab_perf_mode);
-
-        if (!Utils.isABDevice()) {
-            abPerfMode.setVisibility(View.GONE);
-        }
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         autoCheckInterval.setSelection(Utils.getUpdateCheckSetting(this));
         autoDelete.setChecked(prefs.getBoolean(Constants.PREF_AUTO_DELETE_UPDATES, false));
         dataWarning.setChecked(prefs.getBoolean(Constants.PREF_MOBILE_DATA_WARNING, true));
-        abPerfMode.setChecked(prefs.getBoolean(Constants.PREF_AB_PERF_MODE, false));
 
         new AlertDialog.Builder(this)
                 .setTitle(R.string.menu_preferences)
@@ -503,7 +497,6 @@ public class UpdatesActivity extends UpdatesListActivity {
                                     autoCheckInterval.getSelectedItemPosition())
                             .putBoolean(Constants.PREF_AUTO_DELETE_UPDATES, autoDelete.isChecked())
                             .putBoolean(Constants.PREF_MOBILE_DATA_WARNING, dataWarning.isChecked())
-                            .putBoolean(Constants.PREF_AB_PERF_MODE, abPerfMode.isChecked())
                             .apply();
 
                     if (Utils.isUpdateCheckEnabled(this)) {
