@@ -156,6 +156,7 @@ public class Utils {
         String device = SystemProperties.get(Constants.PROP_NEXT_DEVICE,
                 SystemProperties.get(Constants.PROP_DEVICE));
         String type = SystemProperties.get(Constants.PROP_RELEASE_TYPE).toLowerCase(Locale.ROOT);
+        String flavor = SystemProperties.get(Constants.PROP_FLAVOR);
 
         String serverUrl = SystemProperties.get(Constants.PROP_UPDATER_URI);
         if (serverUrl.trim().isEmpty()) {
@@ -164,7 +165,8 @@ public class Utils {
 
         return serverUrl.replace("{device}", device)
                 .replace("{type}", type)
-                .replace("{incr}", incrementalVersion);
+                .replace("{incr}", incrementalVersion)
+                .replace("{flavor}", flavor);
     }
 
     public static String getUpgradeBlockedURL(Context context) {
