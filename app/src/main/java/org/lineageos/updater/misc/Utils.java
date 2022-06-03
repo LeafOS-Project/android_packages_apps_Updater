@@ -410,10 +410,6 @@ public class Utils {
         }
     }
 
-    public static boolean isRecoveryUpdateExecPresent() {
-        return new File(Constants.UPDATE_RECOVERY_EXEC).exists();
-    }
-
     public static String getDisplayVersion(String version) {
         float floatVersion = 0;
         try {
