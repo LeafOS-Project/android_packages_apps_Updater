@@ -399,8 +399,4 @@ public class Utils {
                 return AlarmManager.INTERVAL_DAY * 30;
         }
     }
-
-    public static boolean isRecoveryUpdateExecPresent() {
-        return new File(Constants.UPDATE_RECOVERY_EXEC).exists();
-    }
 }
