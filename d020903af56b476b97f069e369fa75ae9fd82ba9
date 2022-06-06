@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "594933a2_05f2b40b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-06-06T04:53:27Z",
+      "side": 1,
+      "message": "Should add an option in ota json to allow maintainers specifying that automatic install won\u0027t work",
+      "revId": "d020903af56b476b97f069e369fa75ae9fd82ba9",
+      "serverId": "b49086b3-c06c-47ea-b69e-65c8379e1be6"
+    }
+  ]
+}
