@@ -60,6 +60,7 @@ import org.lineageos.updater.misc.Constants;
 import org.lineageos.updater.misc.StringGenerator;
 import org.lineageos.updater.misc.Utils;
 import org.lineageos.updater.model.UpdateInfo;
+import org.lineageos.updater.ui.PreferenceSheet;
 
 import java.io.File;
 import java.io.IOException;
@@ -328,34 +329,6 @@ public class UpdatesActivity extends UpdatesListActivity {
 
     @SuppressLint("ClickableViewAccessibility")
     private void showPreferencesDialog() {
-        View view = LayoutInflater.from(this).inflate(R.layout.preferences_dialog, null);
-        Spinner autoCheckInterval = view.findViewById(R.id.preferences_auto_updates_check_interval);
-        Switch autoDelete = view.findViewById(R.id.preferences_auto_delete_updates);
-        Switch dataWarning = view.findViewById(R.id.preferences_mobile_data_warning);
-
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        autoCheckInterval.setSelection(Utils.getUpdateCheckSetting(this));
-        autoDelete.setChecked(prefs.getBoolean(Constants.PREF_AUTO_DELETE_UPDATES, false));
-        dataWarning.setChecked(prefs.getBoolean(Constants.PREF_MOBILE_DATA_WARNING, true));
-
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.menu_preferences)
-                .setView(view)
-                .setOnDismissListener(dialogInterface -> {
-                    prefs.edit()
-                            .putInt(Constants.PREF_AUTO_UPDATES_CHECK_INTERVAL,
-                                    autoCheckInterval.getSelectedItemPosition())
-                            .putBoolean(Constants.PREF_AUTO_DELETE_UPDATES, autoDelete.isChecked())
-                            .putBoolean(Constants.PREF_MOBILE_DATA_WARNING, dataWarning.isChecked())
-                            .apply();
-
-                    if (Utils.isUpdateCheckEnabled(this)) {
-                        UpdatesCheckReceiver.scheduleRepeatingUpdatesCheck(this);
-                    } else {
-                        UpdatesCheckReceiver.cancelRepeatingUpdatesCheck(this);
-                        UpdatesCheckReceiver.cancelUpdatesCheck(this);
-                    }
-                })
-                .show();
+        new PreferenceSheet().setupPreferenceSheet(mUpdaterService).show(getSupportFragmentManager(), "prefdialog");
     }
 }
