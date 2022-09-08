@@ -60,8 +60,8 @@ $ADB shell chgrp cache "$zip_path_device"
 $ADB shell chmod 664 "$zip_path_device"
 
 # Kill the app before updating the database
-$ADB shell "killall org.lineageos.updater 2>/dev/null"
-$ADB shell "sqlite3 /data/data/org.lineageos.updater/databases/updates.db" \
+$ADB shell "killall org.leafos.updater 2>/dev/null"
+$ADB shell "sqlite3 /data/data/org.leafos.updater/databases/updates.db" \
     "\"INSERT INTO updates (status, path, download_id, timestamp, type, version, size)" \
     "  VALUES ($status, '$zip_path_device', '$id', $timestamp, '$type', '$version', $size)\""
 
