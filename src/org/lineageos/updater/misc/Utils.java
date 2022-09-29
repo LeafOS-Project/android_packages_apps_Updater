@@ -44,6 +44,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.module.ModuleDescriptor.Version;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -90,6 +91,7 @@ public class Utils {
         update.setFileSize(object.getLong("size"));
         update.setDownloadUrl(object.getString("url"));
         update.setVersion(object.getString("version"));
+        update.setUpgradeMinVersion(object.getString("upgrade"));
         return update;
     }
 
@@ -112,7 +114,10 @@ public class Utils {
 
     public static boolean canInstall(UpdateBaseInfo update) {
         return (SystemProperties.getBoolean(Constants.PROP_UPDATER_ALLOW_DOWNGRADING, false) ||
-                update.getTimestamp() > SystemProperties.getLong(Constants.PROP_BUILD_DATE, 0));
+                update.getTimestamp() > SystemProperties.getLong(Constants.PROP_BUILD_DATE, 0)) &&
+                (update.getUpgradeMinVersion() == null || update.getUpgradeMinVersion().length() == 0 ||
+                        Version.parse(SystemProperties.get(Constants.PROP_BUILD_VERSION))
+                        .compareTo(Version.parse(update.getUpgradeMinVersion())) >= 0);
     }
 
     public static List<UpdateInfo> parseJson(File file, boolean compatibleOnly)
