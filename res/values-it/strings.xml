@@ -114,6 +114,6 @@
     <string name="ongoing_channel_title">Download in corso</string>
     <string name="update_failed_channel_title">Aggiornamento fallito</string>
     <string name="info_dialog_title">Lo sapevi?</string>
-    <string name="info_dialog_message">Gli aggiornamenti di LineageOS sono pacchetti d\'installazione completi. Questo significa che puoi sempre installare solo l\'ultimo aggiornamento, anche se ne hai saltati alcuni in precedenza!</string>
+    <string name="info_dialog_message">Gli aggiornamenti di LeafOS sono pacchetti d\'installazione completi. Questo significa che puoi sempre installare solo l\'ultimo aggiornamento, anche se ne hai saltati alcuni in precedenza!</string>
     <string name="info_dialog_ok">Grazie per l\'informazione!</string>
 </resources>
