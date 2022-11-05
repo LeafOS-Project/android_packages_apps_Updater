@@ -9,10 +9,12 @@
     app:strokeColor="@color/cardBackgroundStroke"
     app:strokeWidth="1dp">
 
-    <ImageView
-        android:id="@+id/updateBannerImage"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/illustration_lottie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
         android:adjustViewBounds="true"
-        app:srcCompat="@drawable/banner" />
+        app:lottie_rawRes="@raw/lottie_leaf_updater" />
 </com.google.android.material.card.MaterialCardView>
