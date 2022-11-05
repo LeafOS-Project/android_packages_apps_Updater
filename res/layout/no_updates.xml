@@ -9,12 +9,15 @@
     android:orientation="vertical"
     android:visibility="visible">
 
-    <ImageView
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/illustration_lottie"
         android:layout_width="match_parent"
-        android:layout_height="164dp"
+        android:layout_height="350dp"
         android:layout_marginTop="32dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
         android:adjustViewBounds="true"
-        app:srcCompat="@drawable/ic_no_update" />
+        app:lottie_rawRes="@raw/lottie_leaf_updater" />
 
     <TextView
         android:id="@+id/easterBunny"
