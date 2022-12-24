@@ -114,6 +114,6 @@
     <string name="ongoing_channel_title">Baixades en curs</string>
     <string name="update_failed_channel_title">Actualització fallida</string>
     <string name="info_dialog_title">Ho sabies?</string>
-    <string name="info_dialog_message">Les actualitzacions de LineageOS són paquets d\'instal·lació complets. Açò significa que sempre pots instal·lar únicament l\'última actualització, encara que t\'hagis saltat alguna actualització per entremig.</string>
+    <string name="info_dialog_message">Les actualitzacions de LeafOS són paquets d\'instal·lació complets. Açò significa que sempre pots instal·lar únicament l\'última actualització, encara que t\'hagis saltat alguna actualització per entremig.</string>
     <string name="info_dialog_ok">Gràcies per la informació!</string>
 </resources>
