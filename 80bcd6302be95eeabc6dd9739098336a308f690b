@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e635959_a8fd902f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2023-02-19T06:04:38Z",
+      "side": 1,
+      "message": "02-19 07:03:46.010 14993 14993 E Utils   : org.json.JSONException: No value for upgrade\n\nIf it is unset, also our updater right now doesn\u0027t provide a information link for explaining why the build can\u0027t be installed",
+      "revId": "80bcd6302be95eeabc6dd9739098336a308f690b",
+      "serverId": "b49086b3-c06c-47ea-b69e-65c8379e1be6"
+    }
+  ]
+}
