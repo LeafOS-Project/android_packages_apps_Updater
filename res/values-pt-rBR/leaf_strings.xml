@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="maybe_later">Talvez depois</string>
+    <string name="bunny">Você nunca fica entediado\?</string>
+    <string name="nothing">Ainda nada..</string>
+    <string name="hit">Você acertou.</string>
+</resources>
