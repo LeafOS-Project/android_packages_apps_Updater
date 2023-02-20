@@ -3,5 +3,11 @@
     <string name="maybe_later">Talvez depois</string>
     <string name="bunny">Você nunca fica entediado\?</string>
     <string name="nothing">Ainda nada..</string>
-    <string name="hit">Você acertou.</string>
+    <string name="hit">Atualização encontrada.</string>
+    <string name="check_for_updates">Procurar por atualizações</string>
+    <string name="about_this_update">Sobre esta atualização</string>
+    <string name="notes">Notas</string>
+    <string name="update_notes">∘ Mantenha seu telefone conectado a uma rede durante a atualização.
+\n∘ Certifique-se de que seu dispositivo tenha pelo menos 30% de bateria.
+\n∘ Não use seu telefone ou dispositivo até que a atualização seja concluída.</string>
 </resources>
