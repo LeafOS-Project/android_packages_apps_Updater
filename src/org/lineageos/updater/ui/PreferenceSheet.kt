@@ -28,7 +28,7 @@ class PreferenceSheet : BottomSheetDialogFragment() {
     private var mUpdaterService: UpdaterService? = null
     
     private lateinit var preferencesAutoDeleteUpdates: Switch
-    private lateinit var preferencesMobileDataWarning: Switch
+    private lateinit var preferencesMeteredNetworkWarning: Switch
     private lateinit var preferencesAutoUpdatesCheckInterval: Spinner
 
     override fun getTheme(): Int = R.style.BottomSheetDialogTheme
@@ -46,7 +46,7 @@ class PreferenceSheet : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         with(view) {
             preferencesAutoDeleteUpdates = findViewById(R.id.preferences_auto_delete_updates)
-            preferencesMobileDataWarning = findViewById(R.id.preferences_mobile_data_warning)
+            preferencesMeteredNetworkWarning = findViewById(R.id.preferences_metered_network_warning)
             preferencesAutoUpdatesCheckInterval = findViewById(R.id.preferences_auto_updates_check_interval)
         }
 
@@ -54,8 +54,9 @@ class PreferenceSheet : BottomSheetDialogFragment() {
         preferencesAutoUpdatesCheckInterval.setSelection(Utils.getUpdateCheckSetting(requireContext()))
         preferencesAutoDeleteUpdates.isChecked =
             prefs!!.getBoolean(Constants.PREF_AUTO_DELETE_UPDATES, false)
-        preferencesMobileDataWarning.isChecked =
-            prefs!!.getBoolean(Constants.PREF_MOBILE_DATA_WARNING, true)
+        preferencesMeteredNetworkWarning.isChecked =
+            prefs!!.getBoolean(Constants.PREF_METERED_NETWORK_WARNING,
+                prefs!!.getBoolean(Constants.PREF_MOBILE_DATA_WARNING, true))
     }
 
     override fun onDismiss(dialog: DialogInterface) {
@@ -65,7 +66,7 @@ class PreferenceSheet : BottomSheetDialogFragment() {
                 preferencesAutoUpdatesCheckInterval.selectedItemPosition
             )
             .putBoolean(Constants.PREF_AUTO_DELETE_UPDATES, preferencesAutoDeleteUpdates.isChecked)
-            .putBoolean(Constants.PREF_MOBILE_DATA_WARNING, preferencesMobileDataWarning.isChecked)
+            .putBoolean(Constants.PREF_METERED_NETWORK_WARNING, preferencesMeteredNetworkWarning.isChecked)
             .apply()
 
         if (Utils.isUpdateCheckEnabled(requireContext())) {

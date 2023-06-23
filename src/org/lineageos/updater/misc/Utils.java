@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2022 The LineageOS Project
+ * Copyright (C) 2017-2023 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.os.SystemProperties;
 import android.os.storage.StorageManager;
 import android.util.Log;
@@ -187,15 +188,23 @@ public class Utils {
 
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager cm = context.getSystemService(ConnectivityManager.class);
-        NetworkInfo info = cm.getActiveNetworkInfo();
-        return !(info == null || !info.isConnected() || !info.isAvailable());
+        Network activeNetwork = cm.getActiveNetwork();
+        NetworkCapabilities networkCapabilities = cm.getNetworkCapabilities(activeNetwork);
+        if (networkCapabilities != null &&
+                networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
+                networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)) {
+            return networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
+                    || networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
+                    || networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_USB)
+                    || networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_VPN)
+                    || networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI);
+        }
+        return false;
     }
 
-    public static boolean isOnWifiOrEthernet(Context context) {
+    public static boolean isNetworkMetered(Context context) {
         ConnectivityManager cm = context.getSystemService(ConnectivityManager.class);
-        NetworkInfo info = cm.getActiveNetworkInfo();
-        return (info != null && (info.getType() == ConnectivityManager.TYPE_ETHERNET
-                || info.getType() == ConnectivityManager.TYPE_WIFI));
+        return cm.isActiveNetworkMetered();
     }
 
     /**
@@ -399,5 +408,9 @@ public class Utils {
             case Constants.AUTO_UPDATES_CHECK_INTERVAL_MONTHLY:
                 return AlarmManager.INTERVAL_DAY * 30;
         }
+    }
+
+    public static String getDisplayVersion(String version) {
+        return version;
     }
 }
