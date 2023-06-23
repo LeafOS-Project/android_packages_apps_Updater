@@ -409,8 +409,4 @@ public class Utils {
                 return AlarmManager.INTERVAL_DAY * 30;
         }
     }
-
-    public static String getDisplayVersion(String version) {
-        return version;
-    }
 }
