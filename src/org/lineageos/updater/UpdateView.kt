@@ -396,23 +396,23 @@ class UpdateView : LinearLayout {
 
     private fun startDownloadWithWarning(downloadId: String) {
         val preferences = PreferenceManager.getDefaultSharedPreferences(mActivity)
-        val warn = preferences.getBoolean(Constants.PREF_MOBILE_DATA_WARNING, true)
-        if (Utils.isOnWifiOrEthernet(mActivity) || !warn) {
+        val warn = preferences.getBoolean(Constants.PREF_METERED_NETWORK_WARNING, true)
+        if (!(Utils.isNetworkMetered(mActivity) && warn)) {
             mUpdaterController!!.startDownload(downloadId)
             return
         }
         val checkboxView = LayoutInflater.from(mActivity).inflate(R.layout.checkbox_view, null)
         val checkbox = checkboxView.findViewById<View>(R.id.checkbox) as CheckBox
-        checkbox.setText(R.string.checkbox_mobile_data_warning)
+        checkbox.setText(R.string.checkbox_metered_network_warning)
         AlertDialog.Builder(mActivity!!)
-                .setTitle(R.string.update_on_mobile_data_title)
-                .setMessage(R.string.update_on_mobile_data_message)
+                .setTitle(R.string.update_over_metered_network_title)
+                .setMessage(R.string.update_over_metered_network_message)
                 .setView(checkboxView)
                 .setPositiveButton(R.string.action_download
                 ) { dialog: DialogInterface?, which: Int ->
                     if (checkbox.isChecked) {
                         preferences.edit()
-                                .putBoolean(Constants.PREF_MOBILE_DATA_WARNING, false)
+                                .putBoolean(Constants.PREF_METERED_NETWORK_WARNING, false)
                                 .apply()
                         mActivity!!.supportInvalidateOptionsMenu()
                     }
