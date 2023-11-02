@@ -1,6 +1,6 @@
 #!/bin/sh
 
-updates_dir=/data/lineageos_updates
+updates_dir=/data/ota_package
 
 # $1 = ZIP
 # $2 = UNVERIFIED (optional)
