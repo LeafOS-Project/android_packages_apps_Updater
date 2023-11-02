@@ -6,7 +6,7 @@ Simple application to download and apply OTA packages.
 Server requirements
 -------------------
 The app sends `GET` requests to the URL defined by the `updater_server_url`
-resource (or the `lineage.updater.uri` system property) and expects as response
+resource (or the `leaf.updater.uri` system property) and expects as response
 a JSON with the following structure:
 ```json
 {
@@ -18,7 +18,8 @@ a JSON with the following structure:
       "romtype": "nightly",
       "size": 314572800,
       "url": "https://example.com/ota-package.zip",
-      "version": "15.1"
+      "version": "3.0",
+      "upgrade": "2.0"
     }
   ]
 }
@@ -31,6 +32,7 @@ The `romtype` attribute is the string to be compared with the `ro.lineage.releas
 The `size` attribute is the size of the update expressed in bytes.  
 The `url` attribute is the URL of the file to be downloaded.  
 The `version` attribute is the string to be compared with the `ro.lineage.build.version` property.  
+The `upgrade` attribute is the minimum version supported for automatic upgrades to the current build.  
 
 Additional attributes are ignored.
 
