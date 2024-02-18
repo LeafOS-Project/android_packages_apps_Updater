@@ -1,6 +1,6 @@
 //
-// Copyright (C) 2022-2023 The LineageOS Project
-// Copyright (C) 2022-2023 The LeafOS Project
+// Copyright (C) 2022-2024 The LineageOS Project
+// Copyright (C) 2022-2024 The LeafOS Project
 //
 // SPDX-License-Identifier: Apache-2.0
 //
@@ -19,6 +19,10 @@ android_app {
     privileged: true,
     certificate: "platform",
     system_ext_specific: true,
+
+    overrides: [
+        "SystemUpdater",
+    ],
 
     static_libs: [
         // DO NOT EDIT THIS SECTION MANUALLY
